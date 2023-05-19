@@ -26,15 +26,20 @@ async function run() {
         await client.connect();
         const carCollection = client.db('assignment-11').collection('carCollections')
         const toyCollection = client.db('assignment-11').collection('toyCarCollection')
+        const policeCarCollection = client.db('assignment-11').collection('policeCarCollection')
 
         
 
         app.get('/regu-spo', async (req, res) => {
             const result = await carCollection.find({}).toArray()
             res.send(result)
-        })
+        });
         app.get('/toy-car', async (req, res) => {
             const result = await toyCollection.find({}).toArray()
+            res.send(result)
+        });
+        app.get('/police-car', async (req, res) => {
+            const result = await policeCarCollection.find({}).toArray()
             res.send(result)
         })
 
