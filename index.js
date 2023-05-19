@@ -23,20 +23,20 @@ const client = new MongoClient(uri, {
 async function run() {
     try {
 
-        // await client.connect();
-        // const carCollection = client.db('assignment-11').collection('carCollections')
-        // const toyCollection = client.db('assignment-11').collection('toyCarCollection')
+        await client.connect();
+        const carCollection = client.db('assignment-11').collection('carCollections')
+        const toyCollection = client.db('assignment-11').collection('toyCarCollection')
 
         
 
-        // app.get('/regu-spo', async (req, res) => {
-        //     const result = await carCollection.find({}).toArray()
-        //     res.send(result)
-        // })
-        // app.get('/toy-car', async (req, res) => {
-        //     const result = await toyCollection.find({}).toArray()
-        //     res.send(result)
-        // })
+        app.get('/regu-spo', async (req, res) => {
+            const result = await carCollection.find({}).toArray()
+            res.send(result)
+        })
+        app.get('/toy-car', async (req, res) => {
+            const result = await toyCollection.find({}).toArray()
+            res.send(result)
+        })
 
 
 
