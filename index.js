@@ -1,5 +1,5 @@
 const express = require('express')
-const { MongoClient, ServerApiVersion } = require('mongodb')
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb')
 const cors = require('cors');
 const colors = require('colors');
 require('dotenv').config()
@@ -27,6 +27,8 @@ async function run() {
         const carCollection = client.db('assignment-11').collection('carCollections')
         const toyCollection = client.db('assignment-11').collection('toyCarCollection')
         const policeCarCollection = client.db('assignment-11').collection('policeCarCollection')
+        const addToyCarCollection = client.db('assignment-11').collection('addToyCar');
+        const addCarCollection = client.db('assignment-11').collection('addToToy')
 
         
 
@@ -43,7 +45,12 @@ async function run() {
             res.send(result)
         })
 
-
+        app.post('/addToToy', async(req, res)=>{
+            const addToy= req.body;
+            console.log(addToy);
+            const result = await addCarCollection.insertOne(addToy);
+            res.send(result)
+        })
 
         // Send a ping to confirm a successful connection
         await client.db("admin").command({ ping: 1 });
