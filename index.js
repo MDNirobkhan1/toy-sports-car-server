@@ -36,6 +36,13 @@ async function run() {
             const result = await carCollection.find({}).toArray()
             res.send(result)
         });
+        app.get('/regu-spo/:id', async (req, res) => {
+            const id = req.params.id;
+            const result = await carCollection.find({}).toArray();
+            const selectedCar = result.find(car =>car._id == id);
+            res.send(selectedCar)
+        });
+
         app.get('/toy-car', async (req, res) => {
             const result = await toyCollection.find({}).toArray()
             res.send(result)
@@ -43,6 +50,15 @@ async function run() {
         app.get('/police-car', async (req, res) => {
             const result = await policeCarCollection.find({}).toArray()
             res.send(result)
+        })
+
+        app.get('/addToToy',async(req,res) =>{
+            let qurey = {};
+            if(req.qurey?. email){
+                qurey={email: req.query.email}
+            }
+            const result = await addCarCollection.find(qurey).toArray();
+            res.send(result);
         })
 
         app.post('/addToToy', async(req, res)=>{
