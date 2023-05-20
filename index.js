@@ -36,6 +36,7 @@ async function run() {
             const result = await carCollection.find({}).toArray()
             res.send(result)
         });
+
         app.get('/regu-spo/:id', async (req, res) => {
             const id = req.params.id;
             const result = await carCollection.find({}).toArray();
@@ -47,10 +48,26 @@ async function run() {
             const result = await toyCollection.find({}).toArray()
             res.send(result)
         });
+
+        app.get('/toy-car/:id', async (req, res) => {
+            const id = req.params.id;
+            console.log(id);
+            const result = await toyCollection.find({}).toArray();
+            const selectedCar = result.find(car =>car._id == id);
+            res.send(selectedCar)
+        });
+
         app.get('/police-car', async (req, res) => {
             const result = await policeCarCollection.find({}).toArray()
             res.send(result)
         })
+
+        app.get('/police-car/:id', async (req, res) => {
+            const id = req.params.id;
+            const result = await policeCarCollection.find({}).toArray();
+            const selectedCar = result.find(car =>car._id == id);
+            res.send(selectedCar)
+        });
 
         app.get('/addToToy',async(req,res) =>{
             let qurey = {};
